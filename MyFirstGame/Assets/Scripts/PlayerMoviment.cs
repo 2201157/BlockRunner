@@ -5,29 +5,29 @@ public class PlayerMoviment : MonoBehaviour
     //Player RigidBody
     public Rigidbody rigidBody;
 
-    public float fowardForce = 3;
-    public float sideForce = 100f;
+    public float fowardSpeed = 10;
+    public float sideSpeed = 10;
     private float fallLine = -1f;
 
     //it is called every fixed frame-rate frame 
     private void FixedUpdate()
     {
         //Makes the player move foward
-        //rigidBody.AddForce(0,0, fowardForce * Time.deltaTime);
-        transform.Translate(Vector3.forward * Time.deltaTime * fowardForce, Space.World);
+        transform.Translate(Vector3.forward * Time.deltaTime * fowardSpeed, Space.World);
 
         //If "D" key is pressed
-        if (Input.GetKey("d"))
+        if (Input.GetKey("d") && (transform.position.x < LevelBoundary.rightSide))
         {
             //Makes the player slide to the right
-            rigidBody.AddForce(sideForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+            transform.Translate(Vector3.right * Time.deltaTime * sideSpeed, Space.World);
         }
 
         //If "A" key is pressed
-        if (Input.GetKey("a")){
+        if (Input.GetKey("a") && (transform.position.x > LevelBoundary.leftSide))
+        {
 
             //Makes the player slide to the left
-            rigidBody.AddForce(-sideForce * Time.deltaTime, 0, 0,ForceMode.VelocityChange);
+            transform.Translate(Vector3.left * Time.deltaTime * sideSpeed, Space.World);
 
         }
 

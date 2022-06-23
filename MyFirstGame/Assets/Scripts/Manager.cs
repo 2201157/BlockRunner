@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +9,8 @@ public class Manager : MonoBehaviour
     private bool gameHasEnded = false;
     private float restartDelayTime = 2f;
     public GameObject completeLevelPanel;
+    public TextMeshProUGUI gameOverLabel;
+
 
     //This method ends the game and its trigger either for falling or collidin with an obstacle
     public void EndGame()
@@ -30,7 +33,10 @@ public class Manager : MonoBehaviour
     //Restarts the game loading the actual scene
     public void Restart()
     {
+        gameOverLabel.enabled = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+
     
 }
